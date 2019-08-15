@@ -1,0 +1,26 @@
+{
+  "name": "react-native-jest-serializer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Wes Johnson (http://twitter.com/sterlingwes)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "ansi-styles": "^4.0.0",
+    "pretty-format": "^24.8.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "prettier": "^1.18.2",
+    "react": "^16.9.0",
+    "react-native": "^0.60.5",
+    "react-test-renderer": "^16.9.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
