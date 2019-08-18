@@ -40,15 +40,41 @@ const colorizeHexValues = styleObj =>
     {},
   );
 
+const omitInternalBehaviouralProps = props => {
+  const {
+    isTVSelectable: omit1,
+    onResponderGrant: omit2,
+    onResponderMove: omit3,
+    onResponderRelease: omit4,
+    onResponderTerminate: omit5,
+    onResponderTerminateRequest: omit6,
+    onStartShouldSetResponder: omit7,
+    ...restProps
+  } = props;
+  return restProps;
+};
+
 const serialize = (...args) => {
-  const [component] = args;
-  if (component.props) {
-    if (Array.isArray(component.props.style)) {
-      component.props.style = compactStyle(component.props.style);
-    }
-    component.props.style = colorizeHexValues(component.props.style);
+  const [component, ...restArgs] = args;
+
+  if (!component.props) {
+    return ReactTestComponent.serialize(...args);
   }
-  return ReactTestComponent.serialize(...args);
+
+  const componentCopy = {
+    ...component,
+    props: omitInternalBehaviouralProps(component.props),
+  };
+
+  const props = componentCopy.props;
+
+  if (props.style) {
+    if (Array.isArray(props.style)) {
+      props.style = compactStyle(props.style);
+    }
+    props.style = colorizeHexValues(props.style);
+  }
+  return ReactTestComponent.serialize(...[componentCopy, ...restArgs]);
 };
 
 export { test, serialize };
