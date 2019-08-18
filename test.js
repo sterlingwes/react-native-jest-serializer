@@ -21,34 +21,13 @@ describe('style prop serializing', () => {
           },
           true,
         ]}
-      ></View>
+      />
     );
 
     const tree = renderer.create(<Component />).toJSON();
 
     it('merge an array to the relevant style object', () => {
-      expect(tree).toMatchInlineSnapshot(`
-                        <View
-                          style={
-                            Object {
-                              "flex": 1,
-                              "height": 10,
-                              "position": "absolute",
-                              "transform": Array [
-                                Object {
-                                  "perspective": 850,
-                                },
-                                Object {
-                                  "translateX": -100,
-                                },
-                                Object {
-                                  "rotateY": "60deg",
-                                },
-                              ],
-                            }
-                          }
-                        />
-                  `);
+      expect(tree).toMatchSnapshot();
     });
   });
 
@@ -58,15 +37,37 @@ describe('style prop serializing', () => {
     const tree = renderer.create(<Component />).toJSON();
 
     it('should render the colour to the terminal', () => {
-      expect(tree).toMatchInlineSnapshot(`
-        <View
-          style={
-            Object {
-              "color": "[7m[38;2;192;255;238m#c0ffee[39m[27m",
-            }
-          }
-        />
-      `);
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
+  describe('when there is no style prop', () => {
+    const Component = () => <View coolView />;
+    const tree = renderer.create(<Component />).toJSON();
+
+    it('should still render a snapsoht', () => {
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
+  describe('when a component has behaviour-related props', () => {
+    const fn = () => {};
+    const Component = () => (
+      <View
+        isTVSelectable
+        onResponderGrant={fn}
+        onResponderMove={fn}
+        onResponderRelease={fn}
+        onResponderTerminate={fn}
+        onResponderTerminateRequest={fn}
+        onStartShouldSetResponder={fn}
+      />
+    );
+
+    const tree = renderer.create(<Component />).toJSON();
+
+    it('should strip them from the snapshot output', () => {
+      expect(tree).toMatchSnapshot();
     });
   });
 });
