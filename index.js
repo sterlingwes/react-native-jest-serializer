@@ -1,1 +1,1 @@
-export * from './serializer';
+module.exports = require('./serializer');

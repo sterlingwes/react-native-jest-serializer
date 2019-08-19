@@ -59,7 +59,7 @@ describe('style prop serializing', () => {
         onResponderMove={fn}
         onResponderRelease={fn}
         onResponderTerminate={fn}
-        onResponderTerminateRequest={fn}
+        onResponderTerminationRequest={fn}
         onStartShouldSetResponder={fn}
       />
     );

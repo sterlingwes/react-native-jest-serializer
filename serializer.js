@@ -1,10 +1,9 @@
-import prettyFormat from 'pretty-format';
-import ansi from 'ansi-styles';
+const prettyFormat = require('pretty-format');
+const ansi = require('ansi-styles');
 
 const { ReactTestComponent } = prettyFormat.plugins;
 
 const test = val => {
-  // console.log(val, '=', ReactTestComponent.test(val))
   return ReactTestComponent.test(val);
 };
 
@@ -47,7 +46,7 @@ const omitInternalBehaviouralProps = props => {
     onResponderMove: omit3,
     onResponderRelease: omit4,
     onResponderTerminate: omit5,
-    onResponderTerminateRequest: omit6,
+    onResponderTerminationRequest: omit6,
     onStartShouldSetResponder: omit7,
     ...restProps
   } = props;
@@ -77,4 +76,4 @@ const serialize = (...args) => {
   return ReactTestComponent.serialize(...[componentCopy, ...restArgs]);
 };
 
-export { test, serialize };
+module.exports = { test, serialize };
