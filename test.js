@@ -70,4 +70,18 @@ describe('style prop serializing', () => {
       expect(tree).toMatchSnapshot();
     });
   });
+
+  describe('when there is nested style arrays', () => {
+    const Component = () => (
+      <View
+        style={[{ height: 1, position: 'absolute' }, [{ height: 100 }, [{ position: 'relative' }]]]}
+      />
+    );
+
+    const tree = renderer.create(<Component />).toJSON();
+
+    it('should recurse through them and combine styles into the root object', () => {
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });

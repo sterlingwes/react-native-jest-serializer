@@ -9,14 +9,14 @@ const test = val => {
 
 const compactStyle = styleArray =>
   styleArray
-    .filter(styleObj => {
-      if (!styleObj) return false;
-      return typeof styleObj === 'object';
+    .filter(style => {
+      if (!style) return false;
+      return typeof style === 'object';
     })
     .reduce(
       (accumulated, styleObj) => ({
         ...accumulated,
-        ...styleObj,
+        ...(Array.isArray(styleObj) ? compactStyle(styleObj) : styleObj),
       }),
       {},
     );

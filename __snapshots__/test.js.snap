@@ -35,6 +35,17 @@ exports[`style prop serializing when a style value is a hex colour should render
 />
 `;
 
+exports[`style prop serializing when there is nested style arrays should recurse through them and combine styles into the root object 1`] = `
+<View
+  style={
+    Object {
+      "height": 100,
+      "position": "relative",
+    }
+  }
+/>
+`;
+
 exports[`style prop serializing when there is no style prop should still render a snapsoht 1`] = `
 <View
   coolView={true}

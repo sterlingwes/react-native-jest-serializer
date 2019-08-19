@@ -1,6 +1,6 @@
 {
   "name": "react-native-jest-serializer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "author": "Wes Johnson (http://twitter.com/sterlingwes)",
   "repository": "git://github.com/sterlingwes/react-native-jest-serializer.git",
