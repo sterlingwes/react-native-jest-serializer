@@ -1,5 +1,5 @@
 {
-  "name": "@sterlingwes/react-native-jest-serializer",
+  "name": "react-native-jest-serializer",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Wes Johnson (http://twitter.com/sterlingwes)",
